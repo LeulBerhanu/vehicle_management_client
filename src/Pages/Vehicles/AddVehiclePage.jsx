@@ -55,8 +55,10 @@ export function AddVehiclePage() {
         title: `${result.vehicle.name} - ${result.vehicle.status}`,
         description: result.message,
       });
+      navigate("/");
     } catch (error) {
       console.error("Adding vehicle failed: ", error);
+      navigate("/");
     }
   };
 
