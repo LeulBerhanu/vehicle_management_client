@@ -4,6 +4,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { listVehiclesAPI } from "../APIservices/vehiclesAPI";
 import DataTable from "@/components/DataTable/DataTable";
 import { getVehicleColumns } from "@/components/DataTable/VehiclesColumns";
+import TableSkeleton from "@/components/loader/TableSkeleton";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const HomePage = () => {
 
   const query = { pagination, filter: globalFilter, sorting };
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["vehicles", query],
     queryFn: () => listVehiclesAPI(query),
     placeholderData: keepPreviousData,
@@ -57,6 +58,7 @@ const HomePage = () => {
     }));
   }, [globalFilter]);
 
+  if (isLoading) return <TableSkeleton />;
   return (
     <div>
       {data && (
