@@ -8,7 +8,7 @@ import Icon from "@/components/Icon";
 
 const Footer = () => {
   return (
-    <div className="py-12">
+    <div className="py-10">
       <div className="flex gap-4 justify-center">
         <Icon content="Tanstack">
           <img
